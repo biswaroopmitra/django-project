@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
 # Create your views here.
-class CityView:
+class CityViewSet:
     def __init__(self):
         pass
