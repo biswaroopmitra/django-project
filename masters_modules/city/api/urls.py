@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import CityView
+from .views import CityViewSet
+
+#city_api
 
 router = DefaultRouter()
-router.register(r'city', CityView)
+router.register(r'cities', CityViewSet)
 
 urlpatterns = [
     path('', include(router.urls))
