@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'base_entity.apps.Base_entityConfig',
+    'city.apps.CityConfig',
+    'discipline.apps.DisciplineConfig',
     'university.apps.UniversityConfig',
     'django.contrib.admin',
     'django.contrib.auth',
