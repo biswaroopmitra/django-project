@@ -13,16 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import CityViewSet
-
-#city_api
-
-router = DefaultRouter()
-router.register(r'cities', CityViewSet)
+from django.urls import path
+from .views import CityListCreateView, CityDetailView
 
 urlpatterns = [
-    path('', include(router.urls))
+    # List and Create endpoints
+    path('cities/', CityListCreateView.as_view(), name='city-list-create'),
+    
+    # Detail endpoints (retrieve, update, delete)
+    path('cities/<int:city_id>/', CityDetailView.as_view(), name='city-detail'),
 ]
