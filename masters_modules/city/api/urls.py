@@ -14,11 +14,14 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from .views import CityListCreateView, CityDetailView
+from .views import CityListCreateView, CityDetailView, CityDetailByNameView
 
 urlpatterns = [
     # List and Create endpoints
     path('cities/', CityListCreateView.as_view(), name='city-list-create'),
+    
+    # View by name endpoint
+    path('cities/by-name/', CityDetailByNameView.as_view(), name='city-detail-by-name'),
     
     # Detail endpoints (retrieve, update, delete)
     path('cities/<int:city_id>/', CityDetailView.as_view(), name='city-detail'),

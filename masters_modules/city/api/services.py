@@ -35,6 +35,14 @@ class CityService:
             return None
 
     @staticmethod
+    def get_city_by_name(name):
+        """Retrieve a city by name."""
+        try:
+            return City.objects.get(name=name)
+        except City.DoesNotExist:
+            return None
+
+    @staticmethod
     def list_cities(page=1, page_size=10):
         """List all cities with pagination."""
         cities = City.objects.all().order_by('-created_at')

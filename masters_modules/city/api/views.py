@@ -150,3 +150,33 @@ class CityDetailView(APIView):
             'status': 'success',
             'message': 'City deleted successfully'
         }, status=status.HTTP_204_NO_CONTENT)
+
+
+class CityDetailByNameView(APIView):
+    """
+    Endpoint: GET /api/cities/by-name/?name=<city_name> - Retrieve a city by name
+    """
+
+    def get(self, request):
+        """Retrieve a city by name."""
+        city_name = request.query_params.get('name')
+        
+        if not city_name:
+            return Response({
+                'status': 'error',
+                'message': 'Name parameter is required'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        city = CityService.get_city_by_name(city_name)
+        
+        if not city:
+            return Response({
+                'status': 'error',
+                'message': 'City not found'
+            }, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = CitySerializer(city)
+        return Response({
+            'status': 'success',
+            'data': serializer.data
+        }, status=status.HTTP_200_OK)
